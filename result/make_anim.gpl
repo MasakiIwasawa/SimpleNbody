@@ -1,0 +1,8 @@
+set term gif enhanced animate optimize size 700, 700
+set output "anim.gif"
+n = 4096
+do for[i=0:1000:1]{
+    file_name = sprintf("snap%05d.dat", i)
+    plot[-5:5][-5:5] file_name u 3:($1<n/2 ? $4 : 1/0)  pt 6 ps 1 lc rgb "red" ti "gal1", \
+    file_name u 3:($1>=n/2 ? $4 : 1/0) pt 6 ps 1 lc rgb "blue" ti "gal2"
+}
